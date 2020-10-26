@@ -10,4 +10,12 @@ public interface DeptMapper {
     Long count();
 
     List<DeptEntity> findPage(@Param("currPage")Integer currPage,@Param("pageSize") Integer pageSize);
+
+    void deleteall(String s);
+
+    void add(DeptEntity dept);
+
+    void update(DeptEntity dept);
+
+    DeptEntity selectbyid(Integer id);
 }

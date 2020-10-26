@@ -8,4 +8,10 @@ import java.util.List;
 public interface DeptService {
 
     PageResult findPage(Integer currPage, Integer pageSize);
+
+    void deleteall(String[] id);
+
+    void add(DeptEntity dept);
+
+    DeptEntity selectbyid(Integer id);
 }

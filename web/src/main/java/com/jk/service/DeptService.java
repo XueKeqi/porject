@@ -12,4 +12,13 @@ public interface DeptService {
 
     @RequestMapping("dept/findPage")
     public PageResult findPage(@RequestParam(value = "currPage", defaultValue = "1") Integer currPage, @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize);
+
+    @RequestMapping("dept/add")
+    public void add(@RequestBody DeptEntity dept);
+
+    @RequestMapping("dept/deleteall")
+    public void deleteall(@RequestParam String [] id);
+
+    @RequestMapping("dept/selectbyid")
+    public DeptEntity selectbyid(@RequestParam Integer id);
 }
