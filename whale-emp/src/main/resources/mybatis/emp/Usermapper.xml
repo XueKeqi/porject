@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jk.dao.UserMapper">
 
-    <select id="findAll" resultType="com.jk.entity.emp.User" parameterType="String">
+    <select id="findAll" resultType="User" parameterType="String">
         select * from user a where a.name = #{name}
 
     </select>

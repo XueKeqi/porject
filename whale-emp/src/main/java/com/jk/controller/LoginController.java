@@ -5,6 +5,7 @@ import com.jk.service.ServiceLogin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import sun.plugin.dom.core.Element;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -16,9 +17,10 @@ public class LoginController {
     private ServiceLogin serviceLogin;
 
     @RequestMapping("login")
-    public String login(@RequestBody User user, HttpSession session){
+    public String login(@RequestBody User user){
 
         User user1 =serviceLogin.login(user.getName());
+        System.out.print(user1);
         if(user1==null){
             return "登录失败 账号不存在";
         }
@@ -26,8 +28,7 @@ public class LoginController {
             return "登录失败 密码错误";
         }
 
-        //往前台传值
-        session.setAttribute("users",user1);
+
 
         return "登录成功";
 

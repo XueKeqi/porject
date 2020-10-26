@@ -14,9 +14,15 @@ public class IndexController {
     private DeptService deptService;
 
     @RequestMapping("login")
-    public String index(){
+    public String login(){
         return "login";
     }
+
+    @RequestMapping("index")
+    public String index(){
+        return "index";
+    }
+
 
     @RequestMapping("dept")
     public String dept(){
