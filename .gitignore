@@ -7,3 +7,18 @@
 *.iml
 out
 gen
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+common/src/main/java/com/jk/entity/framework/
+common/src/main/java/com/jk/utils/
+web/src/main/java/com/jk/service/
+web/src/main/resources/static/
+web/src/main/resources/templates/emp/
+web/src/main/resources/templates/framework/
+whale-emp/src/main/resources/mybatis/framework/
