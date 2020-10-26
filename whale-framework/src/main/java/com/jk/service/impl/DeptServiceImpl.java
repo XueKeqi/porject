@@ -21,4 +21,27 @@ public class DeptServiceImpl implements DeptService {
         Long totalPage = total%pageSize == 0 ? total/pageSize : (total/pageSize + 1);
         return new PageResult(total, deptlist, currPage, pageSize, totalPage);
     }
+
+    @Override
+    public void deleteall(String[] id) {
+        for (int i = 0; i < id.length; i++) {
+            deptMapper.deleteall(id[i]);
+        }
+    }
+
+    @Override
+    public void add(DeptEntity dept) {
+        if(dept.getDeptId()==null){
+            deptMapper.add(dept);
+        }
+       else {
+           deptMapper.update(dept);
+        }
+    }
+
+    @Override
+    public DeptEntity selectbyid(Integer id) {
+        return deptMapper.selectbyid(id);
+    }
+
 }

@@ -27,4 +27,30 @@ public class DeptController {
         return deptService.findPage(currPage, pageSize);
     }
 
+    /**
+     *
+     * 删除批删
+     *
+     * @param id
+     */
+    @RequestMapping("dept/deleteall")
+    public void deleteall(@RequestParam String [] id){
+        deptService.deleteall(id);
+    }
+
+    /*
+    新增
+     */
+    @RequestMapping("dept/add")
+    public void add(@RequestBody DeptEntity dept){
+        deptService.add(dept);
+    }
+
+    @RequestMapping("dept/selectbyid")
+    public DeptEntity selectbyid(@RequestParam Integer id){
+        return deptService.selectbyid(id);
+    }
+
+
+
 }
