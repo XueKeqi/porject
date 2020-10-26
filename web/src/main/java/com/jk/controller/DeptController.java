@@ -12,24 +12,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 
 @Controller
-public class IndexController {
+public class DeptController {
     @Resource
     private DeptService deptService;
 
-    @RequestMapping("index")
-    public String index(){
-        return "index";
+    @RequestMapping("dept/findPage")
+    @ResponseBody
+    public PageResult findPage(@RequestParam(value = "currPage", defaultValue = "1") Integer currPage, @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize) {
+        return deptService.findPage(currPage, pageSize);
     }
-
-    @RequestMapping("dept")
-    public String dept(){
-        return "dept";
-    }
-
-    @RequestMapping("user/list")
-    public String userlist(){
-        return "user/userList";
-    }
-
-
 }
