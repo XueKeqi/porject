@@ -6,6 +6,10 @@ spring:
   application:
     name: web
 
+  main:
+    allow-bean-definition-overriding: true #当遇到同样名字的时候，是否允许覆盖注册
+
+
   mvc:
     hiddenmethod:
       filter:
@@ -16,7 +20,9 @@ spring:
     mode: LEGACYHTML5
 
 
-
+ribbon:
+  eureka:
+    enabled: true
 
 feign:
   hystrix:
