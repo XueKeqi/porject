@@ -1,0 +1,29 @@
+
+server:
+  port: 8082
+
+spring:
+  application:
+    name: web
+
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: false
+
+  thymeleaf:
+    cache: false
+    mode: LEGACYHTML5
+
+
+
+
+feign:
+  hystrix:
+    enabled: false
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8765/eureka
