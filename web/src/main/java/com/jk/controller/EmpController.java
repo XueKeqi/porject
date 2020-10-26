@@ -4,6 +4,7 @@ import com.jk.entity.emp.EmployeeEntity;
 import com.jk.service.EmpService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
@@ -21,6 +22,15 @@ public class EmpController {
         model.addAttribute("emp",list);
        return "employee/emplist";
     }
-
+    @RequestMapping("/toAdd")
+    public String toAdd(Model model){
+        model.addAttribute("emp",new EmployeeEntity());
+        return "employee/addemp";
+    }
+    @RequestMapping("/addEmp")
+    public String addEmp( EmployeeEntity employee){
+        empService.addEmp(employee);
+        return "redirect:findList";
+    }
 
 }
