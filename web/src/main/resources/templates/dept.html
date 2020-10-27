@@ -39,68 +39,68 @@
 			<td><input type="checkbox" :value="deptff.deptId" name="check" /> </td>
 			<td>{{deptff.deptText}}</td>
 			<td>{{deptff.deptType}}</td>
-			<td>{{deptff.empNiCheng}}</td>
-			<td>{{deptff.empPhone}}</td>
-			<td>{{deptff.empStatus}}</td>
+			<td>{{deptff.deptNicheng}}</td>
+			<td>{{deptff.deptPhone}}</td>
+			<td>{{deptff.deptStatus}}</td>
 			<td>{{deptff.deptBeizhu}}</td>
 			<td><a data-toggle="modal" data-target="#editModal" @click="xiu(deptff.deptId)">[编辑]</a>
-			|<a @click="shan(deptff.deptId)">[删除]</a>
+				|<a @click="shan(deptff.deptId)">[删除]</a>
 			</td>
 		</tr>
 	</table>
-	<div id="example" style="text-align: right"> <ul id="pageLimit"></ul> </div>
+	<div id="example" style="text-align: right"> <ul id="pageLimit"></ul> </div>gi
 </div>
-	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" id="yyy">
-	<div class="modal-content">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			<h3 id="myModalLabel">部门新增</h3>
-		</div>
-		<form action="../dept/add"   method="post">
-		<div class="modal-body">
-				<table class="table table-bordered table-striped"  width="800px">
-					<tr>
-						<th>
-							<span class="requiredField">*</span>部门名称:
-						</th>
-						<td>
-							<input type="text" v-model="deptxg.deptText" name="deptText" class="form-control" maxlength="200" />
-						</td>
-					</tr>
-					<tr>
-						<th>
-							<span class="requiredField">*</span>类别:
-						</th>
-						<td>
-							<input type="text " v-model="deptxg.deptType" name="deptType"  class="form-control" maxlength="200" />
-						</td>
-					</tr>
-					<tr>
-						<th>
-							<span class="requiredField">*</span>pid:
-						</th>
-						<td>
-							<input type="text" v-model="deptxg.deptPid" name="deptPid" class="form-control" maxlength="200" />
-						</td>
-					</tr>
-					<tr>
-						<th>
-							<span class="requiredField">*</span>备注:
-						</th>
-						<td>
-							<input type="text" v-model="deptxg.deptBeizhu" name="deptBeizhu" class="form-control" maxlength="200" />
-						</td>
-					</tr>
-				 </table>
-		</div>
-		<div class="modal-footer">
-			<button class="btn btn-success" type="submit">保存</button>
-			<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
-		</div>
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" id="yyy">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 id="myModalLabel">部门新增</h3>
+			</div>
+			<form action="../dept/add"   method="post">
+				<div class="modal-body">
+					<table class="table table-bordered table-striped"  width="800px">
+						<tr>
+							<th>
+								<span class="requiredField">*</span>部门名称:
+							</th>
+							<td>
+								<input type="text" v-model="deptxg.deptText" name="deptText" class="form-control" maxlength="200" />
+							</td>
+						</tr>
+						<tr>
+							<th>
+								<span class="requiredField">*</span>类别:
+							</th>
+							<td>
+								<input type="text " v-model="deptxg.deptType" name="deptType"  class="form-control" maxlength="200" />
+							</td>
+						</tr>
+						<tr>
+							<th>
+								<span class="requiredField">*</span>pid:
+							</th>
+							<td>
+								<input type="text" v-model="deptxg.deptPid" name="deptPid" class="form-control" maxlength="200" />
+							</td>
+						</tr>
+						<tr>
+							<th>
+								<span class="requiredField">*</span>备注:
+							</th>
+							<td>
+								<input type="text" v-model="deptxg.deptBeizhu" name="deptBeizhu" class="form-control" maxlength="200" />
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-success" type="submit">保存</button>
+					<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+				</div>
 
-		</form>
-	  </div>
+			</form>
+		</div>
 	</div>
 </div>
 </body>
@@ -129,7 +129,7 @@
 	function searchMemberRankList() {
 		$.ajax({
 			type:"post",
-			url:"/dept/findPage",
+			url:"../dept/findPage",
 			data:{"currPage":vm.currPage,"pageSize":vm.pageSize,"name":vm.name},
 			dataType:"json",
 			success: function(result) {
