@@ -11,7 +11,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 public class WhaleEmpApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WhaleEmpApplication.class, args);
+		SpringApplication.run(WhaleEmpApplication.class);
 	}
 
 }

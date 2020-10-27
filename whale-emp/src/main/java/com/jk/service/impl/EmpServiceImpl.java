@@ -1,5 +1,6 @@
 package com.jk.service.impl;
 
+
 import com.jk.dao.EmpMapper;
 import com.jk.entity.emp.EmployeeEntity;
 import com.jk.entity.emp.User;
@@ -13,6 +14,7 @@ import java.util.List;
 public class EmpServiceImpl implements EmpService {
     @Resource
     private EmpMapper empMapper;
+
     @Override
     public List<EmployeeEntity> findList(EmployeeEntity employee) {
         return empMapper.findList(employee);

@@ -2,6 +2,14 @@ server:
   port: 8766
 
 spring:
+
+
+
+  aop:
+    auto: true
+
+
+
   application:
     name: whale-emp
   datasource:
