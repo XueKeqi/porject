@@ -41,7 +41,7 @@ eureka:
 
 mybatis:
   mapper-locations: classpath*:mybatis/*/*Mapper.xml
-  type-aliases-package: com.jk.entity
+  type-aliases-package: com.jk.entity.emp
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true

@@ -11,12 +11,12 @@
 </head>
 <body>
 <div id="app" class="container">
-	<h1>instant</h1>
+	<h1>组织架构管理</h1>
 	<form action="" id="list_form">
 		<div class="form-group">
-			<label for="name" class="col-sm-1 control-label">名称：</label>
+			<label for="deptText" class="col-sm-1 control-label">名称：</label>
 			<div class="col-sm-2">
-				<input type="text" class="form-control" id="name" v-model="name" placeholder="请输入名字">
+				<input type="text" class="form-control" id="deptText" v-model="name" placeholder="请输入部门">
 			</div>
 		</div>
 		<button type="button" class="btn btn-default" onclick="searchMemberRankList()">搜索</button>
@@ -24,54 +24,72 @@
 		<button type="button" class="btn glyphicon glyphicon-shopping-cart" title="新增" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新增</button>
 	</form>
 	<br>
-	<table class="table table-bordered">
+	<table class="table table-bordered" bgcolor="#ffb6c1">
 		<tr>
 			<th>  </th>
 			<th>组织机构层级</th>
 			<th>分类</th>
 			<th>负责人</th>
 			<th>电话</th>
-			<th>人数</th>
 			<th>状态</th>
 			<th>备注</th>
 			<th>操作</th>
 		</tr>
-		<tr v-for="deptff in memberRankList">
-			<td><input type="checkbox" :value="memberRank.deptId" name="check" /> </td>
+		<tr v-for="deptff in deptlist">
+			<td><input type="checkbox" :value="deptff.deptId" name="check" /> </td>
 			<td>{{deptff.deptText}}</td>
 			<td>{{deptff.deptType}}</td>
-			<td>{{deptff.deptPhone}}</td>
-			<td>{{deptff.deptCount}}</td>
-			<td>{{deptff.deptStatus}}</td>
+			<td>{{deptff.empNiCheng}}</td>
+			<td>{{deptff.empPhone}}</td>
+			<td>{{deptff.empStatus}}</td>
 			<td>{{deptff.deptBeizhu}}</td>
+			<td><a data-toggle="modal" data-target="#editModal" @click="xiu(deptff.deptId)">[编辑]</a>
+			|<a @click="shan(deptff.deptId)">[删除]</a>
+			</td>
 		</tr>
 	</table>
 	<div id="example" style="text-align: right"> <ul id="pageLimit"></ul> </div>
 </div>
-<!-- 	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" >
+	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" id="yyy">
 	<div class="modal-content">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			<h3 id="myModalLabel">会员管理新增</h3>
+			<h3 id="myModalLabel">部门新增</h3>
 		</div>
-		<form action="../root/add"   method="post">
+		<form action="../dept/add"   method="post">
 		<div class="modal-body">
 				<table class="table table-bordered table-striped"  width="800px">
 					<tr>
 						<th>
-							<span class="requiredField">*</span>名字:
+							<span class="requiredField">*</span>部门名称:
 						</th>
 						<td>
-							<input type="text" name="name" class="form-control" maxlength="200" />
+							<input type="text" v-model="deptxg.deptText" name="deptText" class="form-control" maxlength="200" />
 						</td>
 					</tr>
 					<tr>
 						<th>
-							<span class="requiredField">*</span>金额:
+							<span class="requiredField">*</span>类别:
 						</th>
 						<td>
-							<input type="text" name="amount" class="form-control" maxlength="200" />
+							<input type="text " v-model="deptxg.deptType" name="deptType"  class="form-control" maxlength="200" />
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<span class="requiredField">*</span>pid:
+						</th>
+						<td>
+							<input type="text" v-model="deptxg.deptPid" name="deptPid" class="form-control" maxlength="200" />
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<span class="requiredField">*</span>备注:
+						</th>
+						<td>
+							<input type="text" v-model="deptxg.deptBeizhu" name="deptBeizhu" class="form-control" maxlength="200" />
 						</td>
 					</tr>
 				 </table>
@@ -84,13 +102,13 @@
 		</form>
 	  </div>
 	</div>
-</div> -->
+</div>
 </body>
 <script type="text/javascript">
 	var vm = new Vue({
 		el: '#app',
 		data: {
-			memberRankList: "",
+			deptlist: "",
 			totalPage:"",
 			total:"",
 			currPage:"",
@@ -98,7 +116,12 @@
 			name:""
 		}
 	})
-
+	var vs = new Vue({
+		el: '#yyy',
+		data: {
+			deptxg:''
+		}
+	})
 	$(function() {
 		searchMemberRankList();
 	})
@@ -106,7 +129,7 @@
 	function searchMemberRankList() {
 		$.ajax({
 			type:"post",
-			url:"../dept/findPage",
+			url:"/dept/findPage",
 			data:{"currPage":vm.currPage,"pageSize":vm.pageSize,"name":vm.name},
 			dataType:"json",
 			success: function(result) {
@@ -154,7 +177,32 @@
 			}
 		});
 	}
-
+	//单删
+	function shan(id) {
+		var r=confirm("确认删除选择的数据吗?");
+		if (r){
+			$.ajax({
+				url:"../dept/deleteall",
+				type:"post",
+				data:{id:id},
+				success:function(){
+					searchMemberRankList();
+				},
+			});
+		}else{
+			alert("你取消了这个操作");
+		}
+	}
+	function xiu(id){
+		$.ajax({
+			url:"../dept/selectbyid",
+			type:"post",
+			data:{id:id},
+			success:function(data){
+				vs.deptxg=data;
+			},
+		});
+	}
 	function del() {
 		var arr = document.getElementsByName("check");
 		var id = "";
@@ -168,13 +216,15 @@
 			alert("请至少选择一条数据")
 		}else {
 			$.ajax({
-				url:"../instant/delete",
+				url:"../dept/deleteall",
 				data:{id:id},
 				success: function() {
 					alert("删除成功")
+					searchMemberRankList();
 				},
 				error : function() {
 					alert("系统错误，请联系管理员！");
+
 				}
 			})
 		}

@@ -2,12 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jk.dao.DeptMapper">
     <select id="count" resultType="java.lang.Long">
-  	select count(*) from dept
+  	select count(*) from dept a left join employee b on a.dept_pid = b.emp_id
   </select>
 
     <select id="findPage" resultType="DeptEntity">
         <bind name="key_off" value="(currPage - 1)*pageSize"/>
-        select * from dept
+        select * from dept a left join employee b on a.dept_pid = b.emp_id
         limit ${key_off},${pageSize}
     </select>
+
+    <delete id="deleteall">
+        delete from dept where dept_id=#{id}
+    </delete>
+    <insert id="add">
+        insert  into dept(dept_text,dept_type,dept_pid,dept_beizhu) values(#{deptText},#{deptType},#{deptPid},#{deptBeizhu})
+    </insert>
+    <select id="selectbyid" resultType="DeptEntity">
+        select * from  dept where dept_id=#{id}
+    </select>
+    <update id="update">
+        update dept set dept_text=#{deptText},dept_type=#{deptType},dept_pid=#{deptPid}
+    </update>
+
 </mapper>
