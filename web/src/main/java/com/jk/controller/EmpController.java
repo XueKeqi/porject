@@ -23,4 +23,17 @@ public class EmpController {
     }
 
 
+    @RequestMapping("/toAdd")
+    public String toAdd(Model model){
+        model.addAttribute("emp",new EmployeeEntity());
+        return "employee/addemp";
+    }
+    @RequestMapping("/addEmp")
+    public String addEmp( EmployeeEntity employee){
+        empService.addEmp(employee);
+        return "redirect:findList";
+    }
+
+
+
 }

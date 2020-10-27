@@ -6,19 +6,14 @@
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/dist/css/bootstrap.css}">
     <script th:src="@{/webjars/jquery/3.5.1/dist/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.3.7/dist/js/bootstrap.min.js}"></script>
-
-    <link rel="stylesheet" th:href="@{js/css/bootstrap.css}" />
-    <link rel="stylesheet" th:href="@{js/css/bootstrap-table.css}" />
-    <link rel="stylesheet" th:href="@{js/css/bootstarp/bootstrap.css}" />
-    <link rel="stylesheet" th:href="@{js/css/bootstarp/bootstrap-table.css}" />
 </head>
 <body>
 
-    <div class="container">
-        <h1>员工列表</h1>
-        <div class="text-left">
-            <a class="btn btn-info" th:href="@{/zhuanAdd}">新增员工</a>
-        </div>
+<div class="container">
+    <h1>员工列表</h1>
+    <br class="text-left">
+    <a class="btn btn-info" th:href="@{/toAdd}">新增员工</a></br>
+</div>
         <table class="table table-hover">
             <thead>
                 <tr>

@@ -11,4 +11,7 @@ import java.util.List;
 public interface EmpService {
     @RequestMapping("/findList")
     public List<EmployeeEntity> findList(@RequestBody EmployeeEntity employee);
+
+    @RequestMapping("/addEmp")
+    public void addEmp(EmployeeEntity employee);
 }
