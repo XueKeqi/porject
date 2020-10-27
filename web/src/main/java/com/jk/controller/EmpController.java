@@ -1,10 +1,13 @@
 package com.jk.controller;
 
 import com.jk.entity.emp.EmployeeEntity;
+import com.jk.entity.emp.User;
 import com.jk.service.EmpService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -13,6 +16,23 @@ import java.util.List;
 public class EmpController {
     @Resource
     private EmpService empService;
+
+
+
+    @RequestMapping("tea")
+    @ResponseBody
+    public String login(User user){
+        User u = empService.tea(user.getName());
+        System.out.print(u);
+        if(u==null){
+            return "没有该用户";
+        }
+        if(!user.getPassword().equals(u.getPassword())){
+            return "密码错误";
+        }
+
+        return "成功";
+    }
 
     @RequestMapping("/findList")
     public String findList(EmployeeEntity employee, Model model){

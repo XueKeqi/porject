@@ -10,37 +10,74 @@
 <body>
 
 <div class="container">
-    <h1>员工列表</h1>
     <br class="text-left">
     <a class="btn btn-info" th:href="@{/toAdd}">新增员工</a></br>
+
+    <form  th:action="@{'/findList'}" th:method="post">
+        员工名称：  <input name="empNiCheng" class="form-control" id="empNiCheng" type="text"placeholder="请输入员工名称..." s />
+
+        状态：  <input name="empStatus" class="form-control" id="empStatus" type="text" placeholder="请输入..." />
+
+        <input type="submit" value="查询" />
+    </form>
+
 </div>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th><input type="checkbox"></th>
-                    <th>订单编号</th>
-                    <th>订单名称</th>
-                    <th>订单价格</th>
-                    <th>订单日期</th>
-                    <th>支付方式</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="emp : ${emp}">
-                    <td><input type="checkbox"></td>
-                    <td th:text="${emp.empNiCheng}"></td>
-                    <td th:text="${emp.empPhone}"></td>
-                    <td th:text="${emp.empZhuDepartment}"></td>
-                    <td th:text="${emp.empFuDepartment}"></td>
-                    <td th:text="${emp.empStatus}"></td>
-                    <td>
 
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th><input type="checkbox"></th>
+        <th>昵称</th>
+        <th>电话</th>
+        <th>主属部门</th>
+        <th>附属部门</th>
+        <th>职位</th>
+        <th>角色</th>
+        <th>状态</th>
+        <th>备注</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="emp : ${emp}">
+        <td><input type="checkbox"></td>
+        <td th:text="${emp.empNiCheng}"></td>
+        <td th:text="${emp.empPhone}"></td>
+        <td th:text="${emp.deptName}"></td>
+        <td th:text="${emp.empFuDepartment}"></td>
+        <td >
+            <span th:if="${emp.empPosition.indexOf(1)}">项目经理</span>
 
+        </td>
+        <td>
+            <span th:if="${emp.empRole==''}">——</span>
+            <span th:if="${emp.empRole.contains('1')}">蓝鲸管理员</span>
+            <span th:if="${emp.empRole.contains('2')}">订单管理员</span>
+            <span th:if="${emp.empRole.contains('3')}">财务总监</span>
+            <span th:if="${emp.empRole.contains('4')}">售后管理员</span>
+            <span th:if="${emp.empRole.contains('5')}">销售人员</span>
+            <span th:if="${emp.empRole.contains('6')}">售后人员</span>
+            <span th:if="${emp.empRole.contains('7')}">服务人员</span>
+            <span th:if="${emp.empRole.contains('8')}">外勤人员</span>
+            <span th:if="${emp.empRole.contains('10')}">蓝鲸观察员</span>
+            <span th:if="${emp.empRole.contains('11')}">产品管理员</span>
+            <span th:if="${emp.empRole.contains('12')}">账号管理人员</span>
+            <span th:if="${emp.empRole.contains('13')}">测试角色</span>
+
+        </td>
+        <td >
+            <span th:if="${emp.empStatus==1}">正常</span>
+            <span th:if="${emp.empStatus==2}">停用</span>
+            <span th:if="${emp.empStatus==3}">禁止登录</span>
+        </td>
+        <td th:text="${emp.empRemark}"></td>
+        <td>
+            <a th:href="@{/findOrderById(orderId=${emp.empId})}">修改</a>
+            <a th:href="@{/delOrder(orderId=${emp.empId})}">删除</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</div>
 </body>
 </html>

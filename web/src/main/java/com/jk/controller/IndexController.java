@@ -23,6 +23,11 @@ public class IndexController {
         return "index";
     }
 
+    @RequestMapping("show")
+    public String show(){
+        return "show";
+    }
+
 
     @RequestMapping("dept")
     public String dept(){

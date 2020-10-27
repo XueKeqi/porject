@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  xmlns:asp="" xmlns:th="http://www.w3.org/1999/xhtml">
+<html  xmlns:th="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/dist/css/bootstrap.css}">
@@ -78,11 +78,11 @@
 </head>
 <body>
 <div class="header">
-    <center>
-        <h2>
-            企业管理系统</h2>
-    </center>
+        <h2>企业管理系统</h2>
+
 </div>
+
+
 <div class="col-md-2">
     <div class="panel-group" id="accordion">
         <div class="panel panel-default">
@@ -93,8 +93,8 @@
             <div id="collapseOne" class="panel-collapse collapse">
                 <div class="panel-body">
                     <ul class="nav nav-pills nav-stacked">
-                        <li id="dbdz"><a href="dbdz.aspx">组织架构管理</a></li>
-                        <li id="ycllr"><a href="ycllr.aspx">人员管理</a></li>
+                        <li id="dbdz"><a href="#" onclick="func('dept')">组织架构管理</a></li>
+                        <li id="ycllr"><a href="#" onclick="func('findList')">人员管理</a></li>
                         <li id="qxgl"><a href="ycllr.aspx">功能权限管理</a></li>
                         <li id="yclsjgl"><a href="ycllr.aspx">数据权限管理</a></li>
                     </ul>
@@ -130,14 +130,28 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
-<div class="col-md-10">
-    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-    </asp:ContentPlaceHolder>
+<div class="right-content">
+
+    <div style="margin:10px;">
+        <iframe style="border: medium none"
+                width = "80%"
+                height = "800" id="iframe">
+        </iframe>
+    </div>
+</div>
 </div>
 
+<script>
 
+    function func(obj){
+
+    iframe.src = "http://localhost:8082/"+obj;
+}
+
+</script>
 
 </body>
 </html>

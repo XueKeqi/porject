@@ -42,13 +42,6 @@
             height: 10px;
         }
     </style>
-    <script type="text/javascript">
-       <!-- $(function () {
-            $('#btn').click(function (e) {
-                window.location.href = "";
-            });
-        });-->
-    </script>
 </head>
 <body>
 <form id="from">
@@ -89,14 +82,14 @@
          $.ajax({
             //几个参数需要注意一下
                 type: "POST",//方法类型
-                dataType: "json",//预期服务器返回的数据类型
-                url: "/user/login" ,//url
+                url: "/tea" ,//url
                 data: $('#from').serialize(),
                 success: function (result) {
-                   alert("result")
+                alert(result)
+                   window.location.href = "index";
                 },
                 error : function() {
-                    alert("异常！");
+                    window.location.href = "login";
                 }
             });
     }

@@ -8,9 +8,32 @@
     </insert>
 
 
-    <select id="findList" resultType="com.jk.entity.emp.EmployeeEntity">
-       select e.*,d.dept_text deptName,r.role_name roleName,s.sta_name staName from employee e left join  dept d on e.emp_zhudepartment=d.dept_id left join
-          role r on e.emp_role=r.role_id left join status s on e.emp_status=s.sta_id
+    <select id="findList" resultType="com.jk.entity.emp.EmployeeEntity" parameterType="EmployeeEntity">
+        select e.*,d.dept_text deptName,r.role_name roleName,s.sta_name staName from employee e left join  dept d on e.emp_zhudepartment=d.dept_id left join
+        role r on e.emp_role=r.role_id left join status s on e.emp_status=s.sta_id
+        <where>
+            <if test="employee.empNiCheng !='' and employee.empNiCheng!=null">
+                and e.emp_nicheng LIKE '%${employee.empNiCheng}%'
+            </if>
+            <if test="employee.empStatus !=null">
+                and  e.emp_status=#{employee.empStatus}
+            </if>
+
+        </where>
+
+    </select>
+
+
+    <select id="te" resultType="com.jk.entity.emp.User">
+
+        select * from user where name = #{name}
+
+    </select>
+
+
+    <select id="tea" resultType="com.jk.entity.emp.User">
+
+        select * from user where name = #{name}
 
     </select>
 </mapper>
