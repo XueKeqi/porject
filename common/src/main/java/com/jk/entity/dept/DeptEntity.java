@@ -10,6 +10,7 @@ public class DeptEntity {
     private Integer deptPid;
     private String  deptNicheng;
     private String  deptPhone;
+    private String deptBeizhu;
 
     private String  empNiCheng;
     private String  empPhone;

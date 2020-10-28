@@ -3,6 +3,7 @@ package com.jk.service;
 import com.jk.entity.dept.DeptEntity;
 import com.jk.pojo.PageResult;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

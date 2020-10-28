@@ -15,7 +15,7 @@
         delete from dept where dept_id=#{id}
     </delete>
     <insert id="add">
-        insert  into dept(dept_text,dept_type,dept_pid,dept_beizhu) values(#{deptText},#{deptType},#{deptPid},#{deptBeizhu})
+        insert  into dept(dept_text,dept_type,dept_pid,dept_beizhu) values(#{deptText},#{deptType},#{deptPid},1)
     </insert>
     <select id="selectbyid" resultType="DeptEntity">
         select * from  dept where dept_id=#{id}
