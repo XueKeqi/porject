@@ -22,7 +22,12 @@ public class EmpServiceImpl implements EmpService {
 
     @Override
     public void addEmp(EmployeeEntity employee) {
-        empMapper.addEmp(employee);
+        if(employee.getEmpId()==null){
+            empMapper.addEmp(employee);
+        }else{
+            empMapper.updateEmp(employee);
+        }
+
     }
 
     @Override
@@ -33,5 +38,15 @@ public class EmpServiceImpl implements EmpService {
     @Override
     public User tea(String name) {
         return empMapper.tea(name);
+    }
+
+    @Override
+    public void delEmp(Integer empId) {
+        empMapper.delEmp(empId);
+    }
+
+    @Override
+    public EmployeeEntity selectById(Integer empId) {
+        return empMapper.selectById(empId);
     }
 }

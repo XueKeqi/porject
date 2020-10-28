@@ -16,4 +16,10 @@ public interface EmpMapper {
     User te(User user);
 
     User tea(String name);
+
+    void delEmp(Integer empId);
+
+    EmployeeEntity selectById(Integer empId);
+
+    void updateEmp(EmployeeEntity employee);
 }

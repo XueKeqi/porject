@@ -13,4 +13,8 @@ public interface EmpService {
     User te(User user);
 
     User tea(String name);
+
+    void delEmp(Integer empId);
+
+    EmployeeEntity selectById(Integer empId);
 }

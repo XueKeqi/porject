@@ -53,4 +53,14 @@ public class EmpController {
     public void addEmp(@RequestBody EmployeeEntity employee){
         empService.addEmp(employee);
     }
+
+    @RequestMapping("/delEmp")
+    public void delEmp(@RequestParam Integer empId){
+        empService.delEmp(empId);
+    }
+    @RequestMapping("/selectById")
+    public EmployeeEntity selectById(@RequestParam Integer empId){
+      return   empService.selectById(empId);
+    }
+
 }

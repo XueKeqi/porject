@@ -72,8 +72,8 @@
         </td>
         <td th:text="${emp.empRemark}"></td>
         <td>
-            <a th:href="@{/findOrderById(orderId=${emp.empId})}">修改</a>
-            <a th:href="@{/delOrder(orderId=${emp.empId})}">删除</a>
+            <a th:href="@{/selectById(empId=${emp.empId})}">修改</a>
+            <a th:href="@{/delEmp(empId=${emp.empId})}">删除</a>
         </td>
     </tr>
     </tbody>

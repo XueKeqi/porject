@@ -22,4 +22,10 @@ public interface EmpService {
 
     @RequestMapping("tea")
     public User tea(@RequestParam String name);
+
+    @RequestMapping("/delEmp")
+    public void delEmp(@RequestParam Integer empId);
+
+    @RequestMapping("/selectById")
+    public EmployeeEntity selectById(@RequestParam Integer empId);
 }

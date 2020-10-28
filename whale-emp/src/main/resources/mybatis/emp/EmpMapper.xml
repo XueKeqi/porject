@@ -31,9 +31,25 @@
     </select>
 
 
+
     <select id="tea" resultType="com.jk.entity.emp.User">
 
         select * from user where name = #{name}
 
     </select>
+
+    <delete id="delEmp">
+       delete from employee where emp_id=#{empId}
+
+    </delete>
+
+    <select id="selectById" resultType="EmployeeEntity">
+        select * from employee where emp_id=#{empId}
+    </select>
+
+    <update id="updateEmp">
+      update employee set emp_nicheng =#{empNiCheng} ,emp_phone=#{empPhone},emp_zhudepartment=#{empZhuDepartment},emp_fudepartment=#{empFuDepartment},emp_position=#{empPosition},
+                               emp_role=#{empRole},emp_status=#{empStatus}
+            where emp_id = #{empId}
+    </update>
 </mapper>

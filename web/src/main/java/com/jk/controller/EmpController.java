@@ -53,7 +53,27 @@ public class EmpController {
         empService.addEmp(employee);
         return "redirect:findList";
     }
-
-
+    /**
+     * 删除
+     * @param empId
+     * @return
+     */
+    @RequestMapping("/delEmp")
+    public String delEmp(Integer empId){
+        empService.delEmp(empId);
+        return "redirect:findList";
+    }
+    /**
+     * 修改-回显
+     * @param empId
+     * @param model
+     * @return
+     */
+    @RequestMapping("selectById")
+    public String selectById(Integer empId,Model model){
+        EmployeeEntity aa =empService.selectById(empId);
+        model.addAttribute("emp",aa);
+        return "employee/addemp";
+    }
 
 }
